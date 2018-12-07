@@ -1,0 +1,32 @@
+/*!
+ * jsVisualize <https://github.com/xyzMatin/jsVisualize>
+ *
+ * Copyright (c) 2018, M. Matin.
+ * Released under the MIT License.
+ */
+
+(function () {
+	this._jsV = function(parentNode){
+		this.parentNode = parentNode;
+		this.showPercent = function(_value){
+			var _icon_zero = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAA4AAAAgCAYAAAAi7kmXAAAACXBIWXMAAAsTAAALEwEAmpwYAAAAIGNIUk0AAHolAACAgwAA+f8AAIDpAAB1MAAA6mAAADqYAAAXb5JfxUYAAARSSURBVHjahJVPaBRXHMe/78/8ySQbzIzuijGJltRQlbRgG9tcTFLBQtWTCMWLJZJDKXgvSG+99CAeRHqoUKqH1sZLCjY9eDGJJARKGlCymCUSA8vuJpvMzu7Ov/deD8luJrGlPxiYN+99+P3e9/dnyL1795A03/ehlDJaW1tHCKX62tra5Pz8vM8Y23OOK6X2fFBK4URf362Pz569qZTiM8+f315YWPjG0PU958iVK1eaiziO0d3dPXjnzp3p5KG7d+9eXltbm0h65RXPay6iKAIIeQf77PDhw2c2t7YmNE3bBTnn264JAaUUruv+FQQBDMNoRvFqeXlyY30dlNImyN7v74fGOaSUYIyhXC4XvWp18cCBA6cKhUJpYmLiayg1mU6nkclkYNs2HMcB+fH+fUAp5PN5UEqxlM3CsW24lQrxfR+dR44oPwiQyWRwtLMT1WoVhBDwOIoAAEII+L6Pg47zyafnz3/ZYppHCCFQShWfTU39EgbBH3vSwRgDlEKtVqOfX7z4w4dnztwwTXOPOIODg9dfvnz5+8zMzBeMMY8QAnbu3Dl4nofTp0/f/uzCha8aYiWNMYZMJnPCdd3ebDb7WxzHoLlcDr7vf3Dp0qWb+B8bHh6+ahjG5ZWVFVDGGPr7+6/puo5SqeS5rhvsB/L5fGVpaWmVEIKBgYExIWULrVar6Z6enhEAmJube1QoFN7sByuVSvnp06ffA0BXV9dAHMenaGtb2/FMJnMMAEql0p+cc30/SCk1yuXywk4VHeru6vqIvtvb25tKpWwACMMwTwhh/3I9Xq1WC7VaDaZp4r2TJw/R9vZ2izMGpRRWV1cFY4zsp5RSZHNzU8VxLAGg1bJ0KqQsRHEcE0LQ19fHhBByPxjHMRzH4aZpUrWd8wovFYuTT548+c52nLO5XG5xaGjorUS2tLSY448f50dGRn4KwxAvXrx4wDVN86emp781DAN2R4cuhHhLnLa2Nnbo4EE6PTNzXQgBEcegAKBpGtLpNEAIlVKSndqVUkoBAKlUioyNjdGjnZ2gZFsCGkYRHMeBUgpCCAKAAMD8/PyzXx89Gm+Mk3q9rqIoQnt7O2zbBvcqFRBCEAYBwjCkSikCAJ7nVYrF4lYyZCklLMvazo8QormRfGeModWyoj0DarvNtsEg2C3NMAxpI1TGmNJ1Pfqvguerb94kQU0IwXeGEQzDEAlvhJDd2uCzs7PNeaqAFk3T9J2wlWVZ9Z09ViwWeRzHaMD8+LFjTZAxZqVSKQYAfy8uVnq6uxsgXXn9mgVBsAuOjo4mu4A1VNM0bSsxDkk2m+Wu6zZHJPV9H8mnYZZlebOzs37jvowxTQgBKSWklOCFQqEZKufcbMhtd3TUNF2vN1JzY3SU12q13VDpzv9AKQXKWF1K2ej6dbujo9DojtL6euD7/i64WS4nC2DpwcOH1zRNO5lbXv7Ztu36+Pj4rWKpVNzY2HiVzOM/AwB12RaLb8t+dAAAAABJRU5ErkJggg==";
+			var _icon_one = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAA4AAAAgCAYAAAAi7kmXAAAACXBIWXMAAAsTAAALEwEAmpwYAAAAIGNIUk0AAHolAACAgwAA+f8AAIDpAAB1MAAA6mAAADqYAAAXb5JfxUYAAARjSURBVHjafFVfaFNXGP+d796TpEkaS/rPaattbMSmc9OVsT8UNvTZF2HuxSfv6B5UijCECjJhA/ewF0EUtq7I2F7GGOLTiqM4B9NKdaWWSIqVVhttc03aNDnJzf139tDkmrZuBy73fIfvd77z/c7v+w67evUq6odhGJBS+kOh0CFG5Eun02OTk5OGoigb/FQp5YaFU2fPYiWRmGjS9bckEVba2qaaHz585/jRoxuB4+PjnmHbNvYnEqffTybfBgAGoHl5+WB6797RWCx2oj6qWigWPcOyLOTD4Tewafj8/r5QOAzO+SugqqoAAMYYiAh8eXkSgQBgGOsenKMsxHgumwURvQI2BAIAANM0QZzjUCr129Pe3mvbTfNTqSjIMXZjVyo1HI/HwTmH67rrgX4YHQWkxNLSEogIqdlZNEejWCsUmGEY2LljhzQqFbS3t6Nj504IIcAYg2pbFgDg7IULAIDhoaEPtNXVrwOmuR2MgRYWij/29X35xfnzv9eOOXr5MtjIyAggJR7PzdGpubm/22/ffg+53EZ2GhqwNjAw/9SyPnzz1q0X165cAeXzebzMZnFUiF/ar1/fCgKAchmRmze7Gjs6bgBAPp+HEo/H4ff7DxwbGbkE08T/jabp6R2XLl78Z35+PkWKokAbG/sehQKcfftc2dkpNwPsAwcccfhwCQA+mZr6xnHdBhJCtDXa9l4AyEUis0YsVtoMNLdtq9wYGLgAANF0eo9t230UCoe7A7lcCADsUmmKLEvZDGRSKs8YmwCAQDLp29XZ+S7Fe3p6SAgFAMgwsnBdtiU5xpgQIiPb2oBcDr2JRCtFIpEgq5LyIhicZ7a9BSgVBT2Tk00olYBgEKFg0EeO62ZkVby7CoWEVNUt5Lg+n+xdXe1kxSLgOCiVSgX1pa6PpXt6bvsVJaamUn9QU9PxzUC+tqZqQoz/2d//2ObcSSaTPxHn3Pj24MGPWu/c6fzu9OlfJedbjsp1nVpbWqjp/v14y927+yzLStN65fAaCSSrZQbO1z8AtLTEBgcHqX4zMi0Lzc3NAADHcbxo+pEjC3+dOXPzlerKXu7RaBRULBRgVVktCUGy2h5EOJx/1NLy9HXSC4VCUB3H8Rbq5+S6tL1Y5K8DSimhVioVb6FSqXh5qKZJjeUy+y/Bq88WFz3j2eIil6rKAEC1LKVRCF+deFjdHOrExIQHvP/gQQPFYgQADuf2tnxerTGs67pa88tkMqDuri50d3UBAOJ79gT58+cMAMb6+x+SbXsFOr+w4Il/7skTkKZp0DQNAKBpmkK6DgBoLJcNcl3PeXZ21os4MzMDMgwDRrWH1v4A0Lq2Jn+Ox+/VWoeiKB7DruuCMpkMMpnM+qXreqCmlo7FxUbu85WrbwM+0zQv4qmTJ6FS3XtAilKWqgoGIB8OL3RbVgEAEAjgZTbr3VtuZQXq6sqKBzxz7lzq+vDw534p99+T8qtoJFKePnHi40e7d08PDg09rvkJIfDvAOfo6kk/s1WqAAAAAElFTkSuQmCC";
+			var _div = document.createElement("div");
+				_div.style.width = "250px";
+				_div.style.height = "250px";
+				
+			for(var i=1; i<=100; i++){
+				var x = document.createElement("img");
+					if(i<=_value)
+						x.src = _icon_one;
+					else
+						x.src = _icon_zero;
+					_div.appendChild(x);
+			}
+			(document.getElementById(this.parentNode) || document.body).appendChild(_div);
+			return this;
+		};
+		return this;
+	};
+})();
+
