@@ -3,6 +3,7 @@
  *
  * Copyright (c) 2018, M. Matin.
  * Released under the MIT License.
+ * version 1.0
  */
 
 (function () {
